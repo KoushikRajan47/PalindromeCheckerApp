@@ -1,45 +1,43 @@
 /**
  * =====================================================
- * MAIN CLASS – UseCase6PalindromeCheckerApp
+ * MAIN CLASS – UseCase7PalindromeCheckerApp
  * =====================================================
  *
- * Use Case 6: Queue + Stack Based Palindrome Check
+ * Use Case 7: Deque-Based Optimized Palindrome Check
  *
  * Description:
  * This class checks whether a string is a palindrome
- * using both Queue and Stack data structures.
+ * using a Deque data structure by comparing characters
+ * from the front and rear.
  *
  * @author Developer
- * @version 6.0
+ * @version 7.0
  */
 
 import java.util.*;
 
-public class UseCase6PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC6.
+     * Application entry point for UC7.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
         String input = "madam";
 
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into queue and stack
+        // Insert characters into deque
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            queue.add(ch);     // Enqueue
-            stack.push(ch);    // Push
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue vs pop
-        for (int i = 0; i < input.length(); i++) {
-            if (queue.remove() != stack.pop()) {
+        // Compare front and rear
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
